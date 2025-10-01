@@ -1,0 +1,19 @@
+﻿name,category,address,maps_url,web_url,reserve_url,hours,closed,price_range,payment,parking,kid_friendly,host_note,time_by_car_min,time_on_foot_min,image_file
+朝焼けブレックファスト,breakfast,サンプル市海岸通1-1-1,https://example.com/maps/breakfast01,https://example.com/breakfast01,https://example.com/reserve01,7:00-10:00,不定休,"1,000円～2,000円",現金/カード,宿前2台,yes,朝の光が差し込む窓側席が人気です,3,5,spot-01.svg
+港町モーニングテーブル,breakfast,サンプル市港町2-2-5,https://example.com/maps/breakfast02,https://example.com/breakfast02,https://example.com/reserve02,7:30-11:00,水曜,"1,000～2,000円",カード/QR,提携P3台,yes,焼き立てパンの香りで心地よい朝を迎えられます,5,8,spot-02.svg
+宿前ベーカリー,breakfast,サンプル市宿前3-3-2,https://example.com/maps/breakfast03,https://example.com/breakfast03,,8:00-15:00,火曜,"500円～1,500円",現金のみ,近隣コインP,no,散歩ついでに立ち寄れる宿から徒歩3分のベーカリー,2,3,spot-03.svg
+潮風ランチデッキ,lunch,サンプル市海辺4-5-6,https://example.com/maps/lunch01,https://example.com/lunch01,https://example.com/reserve03,11:00-15:00,月曜,"1,500円〜2,000円",カード/QR,提携P5台,yes,海を眺めながら楽しむ限定ランチコースが好評です,6,12,spot-04.svg
+港カフェランチ便,lunch,サンプル市市場通7-1-2,https://example.com/maps/lunch02,https://example.com/lunch02,,10:30-16:00,木曜,"1,000円〜1,500円",現金/QR,市場共用P,no,旬の野菜を使った彩り豊かなワンプレートが楽しめます,5,10,spot-05.svg
+テラスランチガーデン,lunch,サンプル市高台8-3-4,https://example.com/maps/lunch03,https://example.com/lunch03,https://example.com/reserve04,11:30-14:30,火曜,"1,500円〜2,000円",カード,店舗前4台,no,緑に囲まれたテラス席でゆったりランチを満喫できます,7,15,spot-06.svg
+灯夜ダイニング,dinner,サンプル市旧港9-2-1,https://example.com/maps/dinner01,https://example.com/dinner01,https://example.com/reserve05,17:30-22:30,水曜,"¥2,500 - ¥3,500",カード/QR,店舗裏5台,yes,灯りに包まれた落ち着いた空間で特別なディナーをどうぞ,8,18,spot-07.svg
+囲炉裏ビストロ,dinner,サンプル市温泉通5-7-3,https://example.com/maps/dinner02,https://example.com/dinner02,https://example.com/reserve06,18:00-23:00,火曜,"¥3,000 - ¥4,000",カード,施設前8台,yes,炭火で仕上げる肉料理と地酒のペアリングが人気です,9,20,spot-08.svg
+星空コース料理,dinner,サンプル市丘の上6-4-8,https://example.com/maps/dinner03,https://example.com/dinner03,,18:30-22:00,木曜,"¥2,000 - ¥3,000",カード/QR,宿送迎あり,no,最上階から夜景を望む窓際席は特におすすめです,10,0,spot-09.svg
+青浜スーパーマーケット,supermarket,サンプル市浜辺1-5-1,https://example.com/maps/market01,https://example.com/market01,,9:00-21:00,なし,生鮮品100円〜,カード/QR,駐車20台,yes,地元野菜や海産物が豊富で買い出しに便利です,4,6,spot-10.svg
+宿前フードマーケット,supermarket,サンプル市宿前3-4-6,https://example.com/maps/market02,https://example.com/market02,,8:30-20:30,水曜,日用品150円〜,現金/QR,宿から徒歩1分P,yes,朝早くから開いており到着直後の買い足しに重宝します,3,2,spot-11.svg
+マリンデイリーショップ,supermarket,サンプル市マリン通2-7-2,https://example.com/maps/market03,https://example.com/market03,,9:00-22:00,木曜,軽食500円〜,カード,提携P6台,no,ビーチグッズと軽食が揃い夕方の散歩前に便利です,5,9,spot-12.svg
+サンセットビーチステイ,beach,サンプル市夕陽浜7-1-1,https://example.com/maps/beach01,https://example.com/beach01,,常時開放,なし,利用無料,なし,徒歩専用道路,yes,夕陽と水平線が一望できる撮影スポットです,6,15,spot-13.svg
+白砂ビーチラウンジ,beach,サンプル市白砂浜5-3-2,https://example.com/maps/beach02,https://example.com/beach02,,常時開放,なし,利用無料,なし,公共Pあり,no,波が穏やかでファミリーでも安心して遊べます,8,18,spot-14.svg
+クリアウォーター浜,beach,サンプル市透明浜2-2-8,https://example.com/maps/beach03,https://example.com/beach03,,常時開放,なし,利用無料,なし,公共Pあり,no,透明度の高い海でシュノーケリングにも最適です,12,25,spot-15.svg
+潮見灯台スポット,sightseeing,サンプル市灯台前1-1-5,https://example.com/maps/sight01,https://example.com/sight01,,9:00-17:00,なし,見学無料,現金,,yes,360度のビューが広がる灯台で景色を楽しめます,9,0,spot-01.svg
+港ミュージアム,sightseeing,サンプル市歴史町4-3-1,https://example.com/maps/sight02,https://example.com/sight02,,10:00-18:00,火曜,入館料800円,カード/QR,施設前8台,yes,港町の歴史展示と体験型ブースが家族連れに好評です,7,12,spot-02.svg
+オーシャンパーク,sightseeing,サンプル市海浜公園9-9-9,https://example.com/maps/sight03,https://example.com/sight03,https://example.com/reserve07,9:30-17:30,水曜,入園料1200円,カード,大型P50台,yes,海沿い散策路と遊具が揃い一日楽しめる複合公園です,11,20,spot-03.svg
