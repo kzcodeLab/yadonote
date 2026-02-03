@@ -6,11 +6,13 @@
   padding: 0.5rem 0 1rem;
   margin-bottom: 2rem;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .plan-filter-chips::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  display: none;
+  /* Chrome/Safari */
 }
 
 .chip {
@@ -49,7 +51,8 @@
 }
 
 .plan-section {
-  scroll-margin-top: 140px; /* チップやヘッダーとの被り防止 */
+  scroll-margin-top: 140px;
+  /* チップやヘッダーとの被り防止 */
 }
 
 .plan-header {
@@ -136,5 +139,37 @@
 @media (min-width: 768px) {
   .mobile-only {
     display: none;
+  }
+
+  .plans-container {
+    gap: 6rem;
+  }
+
+  .plan-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .plan-section:last-child {
+    border-bottom: none;
+  }
+
+  .plan-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    position: sticky;
+    top: 120px;
+  }
+
+  /* デモエリア内のカードグリッド（強制的に縦並びにするか、グリッドにするか） */
+  .spot-demo-area .spot-category-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 右カラム内では縦積み */
+    gap: 2rem;
   }
 }
