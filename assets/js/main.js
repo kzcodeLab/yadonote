@@ -66,34 +66,105 @@ function sortSpots(spots) {
   return spots;
 }
 
+const DEMO_SPOTS = {
+  single: [
+    {
+      name: '港町モーニングテーブル',
+      categories: ['breakfast'],
+      hours: '7:30-11:00',
+      price_range: '1,000〜2,000円',
+      payment: 'カード/QR',
+      address: 'サンプル市港町2-2-5',
+      time_by_car_min: '5',
+      time_on_foot_min: '8',
+      image_file: 'spot-02.svg',
+      host_note: '焼き立てパンの香りで心地よい朝を迎えられます',
+      parking: '提携P3台'
+    },
+    {
+      name: '潮風ランチデッキ',
+      categories: ['lunch'],
+      hours: '11:00-15:00',
+      price_range: '1,500円〜2,000円',
+      payment: 'カード/QR',
+      address: 'サンプル市海辺4-5-6',
+      time_by_car_min: '6',
+      time_on_foot_min: '12',
+      image_file: 'spot-04.svg',
+      host_note: '海を眺めながら楽しむ限定ランチコースが好評です',
+      parking: '提携P5台'
+    }
+  ],
+  toggle: [
+    {
+      name: '灯夜ダイニング',
+      categories: ['dinner'],
+      hours: '17:30-22:30',
+      price_range: '¥2,500 - ¥3,500',
+      payment: 'カード/QR',
+      address: 'サンプル市旧港9-2-1',
+      time_by_car_min: '8',
+      time_on_foot_min: '18',
+      image_file: 'spot-07.svg',
+      host_note: '灯りに包まれた落ち着いた空間で特別なディナーをどうぞ',
+      parking: '店舗裏5台'
+    },
+    {
+      name: '星空コース料理',
+      categories: ['dinner'],
+      hours: '18:30-22:00',
+      price_range: '¥2,000 - ¥3,000',
+      payment: 'カード/QR',
+      address: 'サンプル市丘の上6-4-8',
+      time_by_car_min: '10',
+      time_on_foot_min: null,
+      image_file: 'spot-09.svg',
+      host_note: '最上階から夜景を望む窓際席は特におすすめです',
+      parking: '宿送迎あり'
+    }
+  ],
+  inline: [
+    {
+      name: '囲炉裏ビストロ',
+      categories: ['dinner'],
+      hours: '18:00-23:00',
+      price_range: '¥3,000 - ¥4,000',
+      payment: 'カード',
+      address: 'サンプル市温泉通5-7-3',
+      time_by_car_min: '9',
+      time_on_foot_min: '20',
+      image_file: 'spot-08.svg',
+      host_note: '炭火で仕上げる肉料理と地酒のペアリングが人気です',
+      parking: '施設前8台'
+    },
+    {
+      name: '港ミュージアム',
+      categories: ['sightseeing'],
+      hours: '10:00-18:00',
+      price_range: '入館料800円',
+      payment: 'カード/QR',
+      address: 'サンプル市歴史町4-3-1',
+      time_by_car_min: '7',
+      time_on_foot_min: '12',
+      image_file: 'spot-02.svg',
+      host_note: '港町の歴史展示と体験型ブースが家族連れに好評です',
+      parking: '施設前8台'
+    }
+  ]
+};
+
 function renderSpots() {
-  // 各デモエリアに対してスポットを描画
   const demoAreas = document.querySelectorAll('.spot-demo-area');
 
   demoAreas.forEach(area => {
-    const type = area.dataset.demoType; // single | toggle | inline
+    const type = area.dataset.demoType;
     area.innerHTML = '';
 
-    // デモタイプに応じて表示するスポットを選定（ここでは全スポットから適当にピックアップ、またはカテゴリでフィルタ）
-    // 要件に合わせて、各プランの特徴がわかるスポットを数件表示
-    let targetSpots = [];
-
-    if (type === 'single') {
-      // シンプルなカフェやランチ
-      targetSpots = STATE.spots.filter(s => ['breakfast', 'lunch', 'cafe'].some(c => s.categories.includes(c))).slice(0, 2);
-    } else if (type === 'toggle') {
-      // 説明多めのディナーなど
-      targetSpots = STATE.spots.filter(s => ['dinner'].some(c => s.categories.includes(c))).slice(0, 2);
-    } else if (type === 'inline') {
-      // 併記で見せたいもの
-      targetSpots = STATE.spots.filter(s => ['dinner', 'bar'].some(c => s.categories.includes(c))).slice(0, 2);
-    }
-
-    // データが少ない場合のフォールバック
-    if (targetSpots.length === 0) targetSpots = STATE.spots.slice(0, 2);
+    // CSV読み込みを待たずに固定のデモデータを表示
+    const targetSpots = DEMO_SPOTS[type] || [];
 
     const grid = document.createElement('div');
-    grid.className = 'spot-category-grid'; // 既存スタイル流用
+    grid.className = 'spot-category-grid';
     grid.setAttribute('role', 'list');
 
     targetSpots.forEach(spot => {
@@ -103,7 +174,6 @@ function renderSpots() {
     area.appendChild(grid);
   });
 
-  // Toggleプランのボタン動作設定
   setupDemoToggle();
 }
 
