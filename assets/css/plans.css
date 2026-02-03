@@ -1,0 +1,140 @@
+/* スマホ向けチップ（プラン選択） */
+.plan-filter-chips {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1rem;
+  margin-bottom: 2rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.plan-filter-chips::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background-color: #f0f4f4;
+  color: #2f4f4f;
+  border: 1px solid #dcdcdc;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip[aria-selected="true"] {
+  background-color: #2f4f4f;
+  color: #fff;
+  border-color: #2f4f4f;
+  box-shadow: 0 2px 6px rgba(47, 79, 79, 0.2);
+}
+
+.chip:hover {
+  background-color: #e0e8e8;
+}
+
+/* プランセクション */
+.plans-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.plan-section {
+  scroll-margin-top: 140px; /* チップやヘッダーとの被り防止 */
+}
+
+.plan-header {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.plan-tag {
+  display: inline-block;
+  background-color: #e6f0f0;
+  color: #006464;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.plan-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.plan-desc {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.plan-meta {
+  display: grid;
+  gap: 0.5rem;
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.plan-meta div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.plan-meta dt {
+  font-weight: bold;
+  color: #2f4f4f;
+  min-width: 80px;
+}
+
+.plan-meta dd {
+  margin: 0;
+  color: #444;
+}
+
+/* デモ用言語切り替えボタン */
+.demo-lang-toggle {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lang-btn {
+  padding: 0.4rem 1rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.lang-btn.active,
+.lang-btn[aria-pressed="true"] {
+  background: #2f4f4f;
+  color: #fff;
+  border-color: #2f4f4f;
+}
+
+/* PCのみ表示、スマホのみ表示の制御（簡易） */
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+}

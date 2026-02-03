@@ -16,395 +16,223 @@ const ICONS = {
   chevron: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>'
 };
 
-const CATEGORY_LABELS = {
-  breakfast: '朝食',
-  lunch: 'ランチ',
-  dinner: 'ディナー',
-  supermarket: 'スーパーマーケット',
-  beach: 'ビーチ',
-  sightseeing: '観光スポット'
+const DEMO_SPOTS_CONFIG = {
+  single: ['breakfast', 'lunch', 'cafe'], // 国内向け・スピード重視に適したカテゴリ
+  toggle: ['dinner', 'sightseeing'],     // 海外客向け・丁寧な説明に適したカテゴリ
+  inline: ['dinner', 'bar']              // 併記で見せたいカテゴリ
 };
-
-const CATEGORY_GROUPS = [
-  { id: 'breakfast', label: '朝食', description: '1言語表示プラン（言語は任意）' },
-  { id: 'lunch', label: 'Lunch', description: '2言語切替えプラン（English ver.）' },
-  { id: 'dinner', label: 'ディナー / Dinner', description: '2言語同一ページ併記プラン' }
-];
-
-const CATEGORY_DISPLAY_LABELS = {
-  breakfast: '朝食',
-  lunch: 'Lunch',
-  dinner: 'ディナー / Dinner'
-};
-
-const CARD_LOCALIZATION = {
-  '潮風ランチデッキ': {
-    en: {
-      name: 'Shiokaze Lunch Deck',
-      hostNote: 'Enjoy seasonal seafood with ocean views. Reserve ahead for a window seat.',
-      hours: '11:00-15:00',
-      price: '¥1,500 - ¥2,000',
-      payment: 'Cards / QR accepted',
-      address: '4-5-6 Kaigan Street, Sample City',
-      parking: 'Partner parking: 5 spaces',
-      car: '6 min by car',
-      walk: '12 min on foot',
-      tags: ['Lunch'],
-      alt: 'Ocean-view dining at Shiokaze Lunch Deck.'
-    }
-  },
-  '港カフェランチ便': {
-    en: {
-      name: 'Minato Cafe Lunch Stand',
-      hostNote: 'Colorful daily plate made with fresh market produce.',
-      hours: '10:30-16:00',
-      price: '¥1,000 - ¥1,500',
-      payment: 'Cash / QR accepted',
-      address: '7-1-2 Ichiba Street, Sample City',
-      parking: 'Market shared parking',
-      car: '5 min by car',
-      walk: '10 min on foot',
-      tags: ['Lunch'],
-      alt: 'Daily plate at Minato Cafe Lunch Stand.'
-    }
-  },
-  'テラスランチガーデン': {
-    en: {
-      name: 'Terrace Lunch Garden',
-      hostNote: 'Unwind on a greenery-filled terrace for a calm midday break.',
-      hours: '11:30-14:30',
-      price: '¥1,500 - ¥2,000',
-      payment: 'Cards accepted',
-      address: '8-3-4 Hilltop, Sample City',
-      parking: '4 spaces in front',
-      car: '7 min by car',
-      walk: '15 min on foot',
-      tags: ['Lunch'],
-      alt: 'Terrace seating at Terrace Lunch Garden.'
-    }
-  },
-  '灯夜ダイニング': {
-    both: {
-      name: '灯夜ダイニング / Tobari Dining',
-      hostNote: '炭火と地酒をゆっくり味わえる地元人気の一軒。/ Savor charcoal-grilled dishes with local sake in a cozy hideaway.',
-      hoursLabel: '営業時間 / Opening Hours',
-      hours: '17:30-22:30 / 5:30pm-10:30pm',
-      priceLabel: '価格帯 / Price',
-      price: '¥2,500 - ¥3,500',
-      paymentLabel: '支払方法 / Payment',
-      payment: 'カード／QR対応 / Cards & QR',
-      addressLabel: '所在地 / Address',
-      address: 'サンプル市旧港9-2-1 / 9-2-1 Old Harbor, Sample City',
-      car: '車で8分 / 8 minutes by car',
-      walk: '徒歩18分 / 18 minutes on foot',
-      tags: ['ディナー / Dinner'],
-      alt: '灯夜ダイニングの炭火席と地酒。/ Charcoal-grilled dinner at Tobari Dining.'
-    }
-  },
-  '囲炉裏ビストロ': {
-    both: {
-      name: '囲炉裏ビストロ / Irori Bistro',
-      hostNote: '炭火で仕上げる肉料理と地酒のペアリングが人気です。/ Charcoal-grilled meats paired with local sake are the highlight.',
-      hoursLabel: '営業時間 / Opening Hours',
-      hours: '18:00-23:00 / 6:00pm-11:00pm',
-      priceLabel: '価格帯 / Price',
-      price: '¥3,000 - ¥4,000',
-      paymentLabel: '支払方法 / Payment',
-      payment: 'カード対応 / Cards accepted',
-      addressLabel: '所在地 / Address',
-      address: 'サンプル市温泉通5-7-3 / 5-7-3 Onsen Street, Sample City',
-      car: '車で9分 / 9 minutes by car',
-      walk: '徒歩20分 / 20 minutes on foot',
-      tags: ['ディナー / Dinner'],
-      alt: '囲炉裏ビストロのコースと囲炉裏席。/ Irori Bistro course and hearth seating.'
-    }
-  },
-  '星空コース料理': {
-    both: {
-      name: '星空コース料理 / Starlight Course Dining',
-      hostNote: '最上階から夜景を望む窓際席は特におすすめです。/ Window seats on the top floor offer sparkling night views.',
-      hoursLabel: '営業時間 / Opening Hours',
-      hours: '18:30-22:00 / 6:30pm-10:00pm',
-      priceLabel: '価格帯 / Price',
-      price: '¥2,000 - ¥3,000',
-      paymentLabel: '支払方法 / Payment',
-      payment: 'カード／QR対応 / Cards & QR',
-      addressLabel: '所在地 / Address',
-      address: 'サンプル市丘の上6-4-8 / 6-4-8 Hilltop, Sample City',
-      car: '車で10分 / 10 minutes by car',
-      tags: ['ディナー / Dinner'],
-      alt: '星空コース料理の夜景とテーブル。/ Night view with the Starlight Course Dining table.'
-    }
-  }
-};
-
-const FAQ_ITEMS = [
-  {
-    question: '申し込みから公開までどれくらいかかりますか？',
-    answer: '初稿7営業日、修正2往復で公開14営業日が目安です。'
-  },
-  {
-    question: '推しのお店・スポットがない場合どうすればよいですか？',
-    answer: 'こちらで選定可能です。インターネット、SNS上に公開されている情報からピックアップさせていただきます。'
-  },
-  {
-    question: '周辺情報が更新された場合は？',
-    answer: 'メンテナンスパックをご用意しています。ご希望に応じて選択してください。急ぎの場合は、緊急プランも用意しています。お気軽にご連絡ください。'
-  },
-  {
-    question: '表示速度やスマホ対応は大丈夫ですか？',
-    answer: 'はい。静的・軽量設計と画像最適化をしています。画像が多くなると表示速度が遅くなる場合がありますが、できる限り軽量化して見やすいサイト作りに努めます。'
-  },
-  {
-    question: 'どこで公開されますか？独自ドメインは？',
-    answer: '標準はGitHub Pages（無料）。独自ドメイン希望の際はお客様に独自ドメイン・サーバーを用意していただく必要があります。'
-  },
-  {
-    question: '掲載に不具合・誤りがあった場合は？',
-    answer: '事実誤認やリンクミスは無償で即時対応します。'
-  },
-  {
-    question: '「AIを使う」とは具体的に何をしますか？',
-    answer: '原稿案の生成・整形の補助に活用します。最終的な内容は人が確認・編集し、正確性とトーンを担保します。'
-  },
-  {
-    question: '納品されるものにはどんなものが含まれますか？',
-    answer: 'サイトURLを共有させていただいております。ご希望であれば別途QRコードを作成してお渡しも可能です。（別途お見積り）'
-  },
-  {
-    question: '支払いタイミングは？',
-    answer: '公開時に請求、銀行振込（手数料ご負担）です。キャンセルは着手後50％が目安です。'
-  }
-];
-
-const ANALYTICS_EVENT = 'yadonote_event';
-const ANALYTICS_ENDPOINT = window.YADONOTE_ANALYTICS_ENDPOINT || null;
 
 document.addEventListener('DOMContentLoaded', () => {
   setupMenu();
-  setupLanguage();
+  setupLanguage(); // サイト全体の言語設定（もしあれば）
+  setupChips();    // スマホ用チップ動作
   setupTracking();
   renderFAQ();
   loadSpots();
 });
 
-function setupMenu() {
-  const toggle = document.querySelector('.menu-toggle');
-  const navList = document.querySelector('.nav-list');
-  if (!toggle || !navList) return;
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    navList.classList.toggle('open', !expanded);
-  });
-}
+function setupChips() {
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = chip.dataset.target;
+      const target = document.querySelector(targetId);
+      if (target) {
+        // チップの選択状態更新
+        chips.forEach(c => c.setAttribute('aria-selected', 'false'));
+        chip.setAttribute('aria-selected', 'true');
 
-function setupLanguage() {
-  const switcher = document.querySelector('.language-switch');
-  if (STATE.languageMode === 'switch' && switcher) {
-    switcher.hidden = false;
-    document.body.dataset.language = STATE.language;
-    switcher.querySelectorAll('.lang-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const lang = btn.dataset.lang;
-        STATE.language = lang;
-        document.body.dataset.language = lang;
-        switcher.querySelectorAll('.lang-btn').forEach((other) => {
-          other.setAttribute('aria-pressed', String(other.dataset.lang === lang));
+        // スムーズスクロール (ヘッダー分のオフセットを考慮)
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
         });
-      });
+      }
     });
-  }
-}
-
-async function loadSpots() {
-  try {
-    const response = await fetch('data/spots.csv');
-    if (!response.ok) throw new Error('CSVの取得に失敗しました');
-    const text = await response.text();
-    const parsed = parseCSV(text);
-    STATE.spots = sortSpots(parsed);
-    renderSpots();
-  } catch (error) {
-    console.error(error);
-    const list = document.querySelector('.spot-category-list');
-    if (list) {
-      list.innerHTML = '<p>スポットデータの読み込みに失敗しました。ページを再読み込みしてください。</p>';
-    }
-  }
-}
-
-function parseCSV(text) {
-  const rows = text.trim().split(/\r?\n/).filter(Boolean);
-  if (!rows.length) return [];
-  const headers = parseCSVRow(rows.shift());
-  return rows.map((line) => {
-    const values = parseCSVRow(line);
-    const entry = {};
-    headers.forEach((header, index) => {
-      entry[header.trim()] = (values[index] || '').trim();
-    });
-    entry.categories = entry.category ? entry.category.split('|').map((cat) => cat.trim()) : [];
-    entry.kid_friendly = entry.kid_friendly === 'yes';
-    entry.time_by_car_min = Number(entry.time_by_car_min || 0);
-    entry.time_on_foot_min = Number(entry.time_on_foot_min || 0);
-    entry.display_name = entry.name;
-    return entry;
   });
 }
 
-function parseCSVRow(line) {
-  const result = [];
-  let current = '';
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
-    if (char === '"') {
-      if (inQuotes && line[i + 1] === '"') {
-        current += '"';
-        i += 1;
-      } else {
-        inQuotes = !inQuotes;
-      }
-    } else if (char === ',' && !inQuotes) {
-      result.push(current);
-      current = '';
-    } else {
-      current += char;
-    }
-  }
-  result.push(current);
-  return result.map((value) => value.trim().replace(/\r$/, ''));
-}
+// ... setupMenu, setupLanguage ...
+
+// ... loadSpots, parseCSV, parseCSVRow ...
 
 function sortSpots(spots) {
-  return spots.sort((a, b) => a.display_name.localeCompare(b.display_name, 'ja'));
+  // デモ用に適当な順序、あるいはCSV順のまま利用
+  return spots;
 }
 
 function renderSpots() {
-  const list = document.querySelector('.spot-category-list');
-  if (!list) return;
-  list.innerHTML = '';
+  // 各デモエリアに対してスポットを描画
+  const demoAreas = document.querySelectorAll('.spot-demo-area');
 
-  CATEGORY_GROUPS.forEach(({ id, label, description }) => {
-    const spots = STATE.spots.filter((spot) => spot.categories.includes(id)).slice(0, 3);
-    if (!spots.length) return;
+  demoAreas.forEach(area => {
+    const type = area.dataset.demoType; // single | toggle | inline
+    area.innerHTML = '';
 
-    const section = document.createElement('section');
-    section.className = 'spot-category';
+    // デモタイプに応じて表示するスポットを選定（ここでは全スポットから適当にピックアップ、またはカテゴリでフィルタ）
+    // 要件に合わせて、各プランの特徴がわかるスポットを数件表示
+    let targetSpots = [];
 
-    const heading = document.createElement('h3');
-    heading.className = 'spot-category-title';
-    heading.textContent = label;
-    section.appendChild(heading);
-
-    if (description) {
-      const subheading = document.createElement('p');
-      subheading.className = 'spot-category-sub';
-      subheading.textContent = description;
-      section.appendChild(subheading);
+    if (type === 'single') {
+      // シンプルなカフェやランチ
+      targetSpots = STATE.spots.filter(s => ['breakfast', 'lunch', 'cafe'].some(c => s.categories.includes(c))).slice(0, 2);
+    } else if (type === 'toggle') {
+      // 説明多めのディナーなど
+      targetSpots = STATE.spots.filter(s => ['dinner'].some(c => s.categories.includes(c))).slice(0, 2);
+    } else if (type === 'inline') {
+      // 併記で見せたいもの
+      targetSpots = STATE.spots.filter(s => ['dinner', 'bar'].some(c => s.categories.includes(c))).slice(0, 2);
     }
 
+    // データが少ない場合のフォールバック
+    if (targetSpots.length === 0) targetSpots = STATE.spots.slice(0, 2);
+
     const grid = document.createElement('div');
-    grid.className = 'spot-category-grid';
+    grid.className = 'spot-category-grid'; // 既存スタイル流用
     grid.setAttribute('role', 'list');
 
-    spots.forEach((spot) => {
-      grid.appendChild(createSpotCard(spot, id));
+    targetSpots.forEach(spot => {
+      grid.appendChild(createSpotCard(spot, type));
     });
 
-    section.appendChild(grid);
-    list.appendChild(section);
+    area.appendChild(grid);
   });
 
-  if (!list.children.length) {
-    const empty = document.createElement('p');
-    empty.className = 'spot-empty';
-    empty.textContent = '現在表示できるスポットがありません。';
-    list.appendChild(empty);
-  }
+  // Toggleプランのボタン動作設定
+  setupDemoToggle();
 }
 
-function localizeSpot(spot, categoryId) {
+function setupDemoToggle() {
+  const toggleSection = document.getElementById('plan-02');
+  if (!toggleSection) return;
+
+  const btns = toggleSection.querySelectorAll('.lang-btn');
+  const demoArea = toggleSection.querySelector('.spot-demo-area');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // ボタンの見た目更新
+      btns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      // 言語モード切り替え
+      const lang = btn.textContent.trim().toLowerCase() === 'jp' ? 'ja' : 'en';
+
+      // カードの言語を更新（再描画せずクラス切り替え等で対応したいが、今回は簡易的に再描画または属性付与）
+      // 既存の createSpotCard は引数でコンテンツを確定させているため、
+      // ここでは簡易的にカードを作り直す
+      const targetSpots = STATE.spots.filter(s => ['dinner'].some(c => s.categories.includes(c))).slice(0, 2);
+      const grid = demoArea.querySelector('.spot-category-grid');
+      if (grid) {
+        grid.innerHTML = '';
+        targetSpots.forEach(spot => {
+          // toggleモードの場合、指定言語でカードを作る
+          grid.appendChild(createSpotCard(spot, 'toggle', lang));
+        });
+      }
+    });
+  });
+}
+
+function localizeSpot(spot, type, lang = 'ja') {
   const baseInfo = {
     title: spot.name,
     hostNote: spot.host_note,
     info: {
       hours: { label: '営業時間', value: spot.hours || '営業時間未登録' },
       price: { label: '価格帯', value: spot.price_range || '価格帯未登録' },
-      payment: { label: '支払方法', value: spot.payment || '支払い情報はお問い合わせください' },
-      address: { label: '所在地', value: spot.address || '住所はお問い合わせください' }
+      payment: { label: '支払方法', value: spot.payment || '支払い情報について' },
+      address: { label: '所在地', value: spot.address || '住所情報なし' }
     },
-    tags: [CATEGORY_DISPLAY_LABELS[categoryId]].filter(Boolean),
+    tags: spot.categories.map(c => CATEGORY_LABELS[c] || c),
     travel: {
       car: spot.time_by_car_min ? `車で${spot.time_by_car_min}分` : null,
       walk: spot.time_on_foot_min ? `徒歩${spot.time_on_foot_min}分` : null,
       parking: spot.parking || '駐車: 要確認'
     },
-    alt: `${spot.name}の様子。${spot.host_note}`
+    alt: `${spot.name}の外観`
   };
 
-  if (categoryId === 'lunch') {
-    const overrides = CARD_LOCALIZATION[spot.name]?.en || {};
-    return {
-      title: overrides.name || baseInfo.title,
-      hostNote: overrides.hostNote || baseInfo.hostNote,
-      info: {
-        hours: { label: 'Opening Hours', value: overrides.hours || spot.hours || 'Check hours' },
-        price: { label: 'Price Range', value: overrides.price || spot.price_range || 'Check price' },
-        payment: { label: 'Payment', value: overrides.payment || spot.payment || 'Please ask for payment options' },
-        address: { label: 'Address', value: overrides.address || spot.address || 'Check address' }
-      },
-      tags: overrides.tags || ['Lunch'],
-      travel: {
-        car: overrides.car || (spot.time_by_car_min ? `Drive ${spot.time_by_car_min} min` : null),
-        walk: overrides.walk || (spot.time_on_foot_min ? `Walk ${spot.time_on_foot_min} min` : null),
-        parking: null
-      },
-      alt: overrides.alt || `Dining at ${overrides.name || spot.name}. ${overrides.hostNote || spot.host_note}`
-    };
+  // 英語データ（擬似的に生成、実際はCSVにenカラムがあればそれを使うが、今回はハードコード辞書を参照）
+  // ※既存の CARD_LOCALIZATION を活用
+  const enData = CARD_LOCALIZATION[spot.name]?.en || {};
+  const bothData = CARD_LOCALIZATION[spot.name]?.both || {};
+
+  if (type === 'single') {
+    // 日本語のみ
+    return baseInfo;
   }
 
-  if (categoryId === 'dinner') {
-    const overrides = CARD_LOCALIZATION[spot.name]?.both || {};
-    return {
-      title: overrides.name || baseInfo.title,
-      hostNote: overrides.hostNote || baseInfo.hostNote,
-      info: {
-        hours: {
-          label: overrides.hoursLabel || '営業時間 / Opening Hours',
-          value: overrides.hours || (spot.hours ? `${spot.hours} / Check hours` : '要確認 / Please inquire')
+  if (type === 'toggle') {
+    // 言語切替（現在のlangに応じる）
+    if (lang === 'en') {
+      return {
+        title: enData.name || spot.name,
+        hostNote: enData.hostNote || spot.host_note,
+        info: {
+          hours: { label: 'Hours', value: enData.hours || spot.hours },
+          price: { label: 'Price', value: enData.price || spot.price_range },
+          payment: { label: 'Payment', value: enData.payment || spot.payment },
+          address: { label: 'Address', value: enData.address || spot.address }
         },
-        price: {
-          label: overrides.priceLabel || '価格帯',
-          value: overrides.price || (spot.price_range ? spot.price_range : '要確認')
+        tags: enData.tags || baseInfo.tags,
+        travel: {
+          car: enData.car || (spot.time_by_car_min ? `${spot.time_by_car_min} min drive` : null),
+          walk: enData.walk || (spot.time_on_foot_min ? `${spot.time_on_foot_min} min walk` : null),
+          parking: null // 英語では詳細省略など
         },
-        payment: {
-          label: overrides.paymentLabel || '支払方法 / Payment',
-          value: overrides.payment || (spot.payment ? `${spot.payment} / Payment info` : 'お問い合わせください / Please ask')
+        alt: enData.alt || baseInfo.alt
+      };
+    } else {
+      return baseInfo;
+    }
+  }
+
+  if (type === 'inline') {
+    // 併記（bothデータがあれば使う）
+    // データがない場合は日本語をベースに無理やり併記風にする処理を入れるか、
+    // ここでは既存のCARD_LOCALIZATIONにあるものを優先使用
+    if (CARD_LOCALIZATION[spot.name]?.both) {
+      const d = CARD_LOCALIZATION[spot.name].both;
+      return {
+        title: d.name,
+        hostNote: d.hostNote, // 既に併記済みと想定
+        info: {
+          hours: { label: d.hoursLabel, value: d.hours },
+          price: { label: d.priceLabel, value: d.price },
+          payment: { label: d.paymentLabel, value: d.payment },
+          address: { label: d.addressLabel, value: d.address }
         },
-        address: {
-          label: overrides.addressLabel || '所在地 / Address',
-          value: overrides.address || (spot.address ? `${spot.address} / Address` : '要確認 / Please inquire')
-        }
-      },
-      tags: overrides.tags || ['ディナー / Dinner'],
-      travel: {
-        car: overrides.car || (spot.time_by_car_min ? `車で${spot.time_by_car_min}分 / ${spot.time_by_car_min} minutes by car` : null),
-        walk: overrides.walk || (spot.time_on_foot_min ? `徒歩${spot.time_on_foot_min}分 / ${spot.time_on_foot_min} minutes on foot` : null),
-        parking: overrides.parking || null
-      },
-      alt: overrides.alt || `${spot.name}の様子。${spot.host_note}`
-    };
+        tags: d.tags,
+        travel: {
+          car: d.car,
+          walk: d.walk,
+          parking: null
+        },
+        alt: d.alt
+      };
+    }
+    // データがない場合（フォールバック：日本語のみ）
+    return baseInfo;
   }
 
   return baseInfo;
 }
 
-function createSpotCard(spot, categoryId) {
-  const localized = localizeSpot(spot, categoryId);
+function createSpotCard(spot, type, lang = 'ja') {
+  const localized = localizeSpot(spot, type, lang);
   const article = document.createElement("article");
   article.className = "spot-card";
+  // ... (以下、構築ロジックは概ね同じだが、travel周りの表示調整が必要)
   article.setAttribute("role", "listitem");
 
   const image = document.createElement("img");

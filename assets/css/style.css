@@ -1,4 +1,6 @@
-﻿:root {
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+:root {
   color-scheme: light;
   --color-bg: #f8fbfb;
   --color-surface: #ffffff;
@@ -10,7 +12,7 @@
   --shadow-soft: 0 12px 32px rgba(12, 46, 46, 0.08);
   --radius-lg: 20px;
   --radius-md: 16px;
-  --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
 }
 
 * {
@@ -210,7 +212,7 @@ a:focus {
   position: relative;
   padding: 6.5rem 0 4.5rem;
   background: radial-gradient(circle at 15% 20%, rgba(31, 122, 122, 0.18), transparent 55%),
-              linear-gradient(135deg, rgba(12, 45, 56, 0.15) 0%, rgba(248, 251, 251, 0.95) 55%);
+    linear-gradient(135deg, rgba(12, 45, 56, 0.15) 0%, rgba(248, 251, 251, 0.95) 55%);
   overflow: hidden;
 }
 
@@ -401,7 +403,7 @@ a:focus {
   opacity: 1;
 }
 
-.feature-card > * {
+.feature-card>* {
   position: relative;
   z-index: 1;
 }
@@ -493,8 +495,7 @@ a:focus {
   font-size: 1.25rem;
 }
 
-.spot-card .host-note {
-}
+.spot-card .host-note {}
 
 .spot-meta {
   display: grid;
@@ -598,8 +599,8 @@ a:focus {
   background: linear-gradient(90deg, rgba(31, 122, 122, 0.45) 0%, rgba(31, 122, 122, 0.2) 100%);
 }
 
-.pricing-card > *:not(.pricing-card-title),
-.maintenance-card > *:not(h4) {
+.pricing-card>*:not(.pricing-card-title),
+.maintenance-card>*:not(h4) {
   position: relative;
   z-index: 1;
 }
@@ -774,7 +775,7 @@ a:focus {
   overflow: hidden;
 }
 
-.faq-item + .faq-item {
+.faq-item+.faq-item {
   margin-top: 1rem;
 }
 
@@ -850,7 +851,7 @@ a:focus {
   opacity: 1;
 }
 
-.process-steps li > * {
+.process-steps li>* {
   position: relative;
   z-index: 1;
 }
@@ -883,7 +884,7 @@ a:focus {
   gap: 0.75rem;
 }
 
-.requirements > h3 {
+.requirements>h3 {
   margin: 0 0 1rem;
   font-size: 2rem;
   font-weight: 700;
@@ -1090,7 +1091,10 @@ a:focus {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
