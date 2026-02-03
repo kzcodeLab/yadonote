@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupChips();    // スマホ用チップ動作
   setupTracking();
   renderFAQ();
+  renderSpots();
   loadSpots();
 });
 
