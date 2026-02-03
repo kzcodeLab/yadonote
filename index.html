@@ -97,75 +97,92 @@
         </div>
 
         <div class="plans-container">
+
           <!-- ① 1言語表示プラン -->
           <section id="plan-01" class="plan-section">
-            <div class="plan-header">
-              <span class="plan-tag">国内ゲスト中心 / スピード重視</span>
-              <h3 class="plan-title">1言語表示プラン</h3>
-              <p class="plan-desc">いちばんシンプル。速く・低コストで始められる。</p>
-              <dl class="plan-meta">
-                <div>
-                  <dt>向いている施設</dt>
-                  <dd>国内ゲスト中心 / スピード重視</dd>
-                </div>
-                <div>
-                  <dt>注意点</dt>
-                  <dd>多言語化時は切替/併記に拡張対応</dd>
-                </div>
-              </dl>
+            <div class="plan-info-col">
+              <div class="plan-header">
+                <span class="plan-tag">国内ゲスト中心 / スピード重視</span>
+                <h3 class="plan-title">1言語表示プラン</h3>
+                <p class="plan-desc">いちばんシンプル。速く・低コストで始められる。</p>
+                <dl class="plan-meta">
+                  <div>
+                    <dt>向いている施設</dt>
+                    <dd>国内ゲスト中心 / スピード重視</dd>
+                  </div>
+                  <div>
+                    <dt>注意点</dt>
+                    <dd>多言語化時は切替/併記に拡張対応</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
-            <div class="spot-demo-area" data-demo-type="single">
-              <!-- JSでカードを表示 -->
+            <div class="plan-demo-col">
+              <p class="demo-caption">1言語表示プラン（言語は任意）</p>
+              <div class="spot-demo-area" data-demo-type="single">
+                <!-- JSでカードを表示 -->
+              </div>
             </div>
           </section>
 
           <!-- ② 2言語切替えプラン -->
           <section id="plan-02" class="plan-section">
-            <div class="plan-header">
-              <span class="plan-tag">海外比率が高い / 丁寧に分けたい</span>
-              <h3 class="plan-title">2言語切替えプラン（English ver.）</h3>
-              <p class="plan-desc">日本語と英語を切替表示。読みやすさ・案内精度を確保。</p>
-              <dl class="plan-meta">
-                <div>
-                  <dt>向いている施設</dt>
-                  <dd>海外比率が高い / 丁寧に分けたい</dd>
+            <div class="plan-info-col">
+              <div class="plan-header">
+                <span class="plan-tag">海外比率が高い / 丁寧に分けたい</span>
+                <h3 class="plan-title">2言語切替えプラン（English ver.）</h3>
+                <p class="plan-desc">日本語と英語を切替表示。読みやすさ・案内精度を確保。</p>
+                <dl class="plan-meta">
+                  <div>
+                    <dt>向いている施設</dt>
+                    <dd>海外比率が高い / 丁寧に分けたい</dd>
+                  </div>
+                  <div>
+                    <dt>注意点</dt>
+                    <dd>2言語ぶん同時更新が必要</dd>
+                  </div>
+                </dl>
+                <div class="demo-lang-toggle">
+                  <button type="button" class="lang-btn" aria-pressed="false">JP</button>
+                  <button type="button" class="lang-btn active" aria-pressed="true">EN</button>
                 </div>
-                <div>
-                  <dt>注意点</dt>
-                  <dd>2言語ぶん同時更新が必要</dd>
-                </div>
-              </dl>
-              <div class="demo-lang-toggle">
-                <button type="button" class="lang-btn active" aria-pressed="true">JP</button>
-                <button type="button" class="lang-btn" aria-pressed="false">EN</button>
               </div>
             </div>
-            <div class="spot-demo-area" data-demo-type="toggle">
-              <!-- JSでカードを表示 -->
+            <div class="plan-demo-col">
+              <p class="demo-caption">2言語切替えプラン（English ver.）</p>
+              <div class="spot-demo-area" data-demo-type="toggle">
+                <!-- JSでカードを表示 -->
+              </div>
             </div>
           </section>
 
           <!-- ③ 2言語同一ページ併記プラン -->
           <section id="plan-03" class="plan-section">
-            <div class="plan-header">
-              <span class="plan-tag">フロント・客室QR掲示</span>
-              <h3 class="plan-title">2言語同一ページ併記プラン</h3>
-              <p class="plan-desc">1ページに日英を併記。URLひとつで現地掲示に強い。</p>
-              <dl class="plan-meta">
-                <div>
-                  <dt>向いている施設</dt>
-                  <dd>フロント・客室QR掲示</dd>
-                </div>
-                <div>
-                  <dt>注意点</dt>
-                  <dd>ページが長くなりがち（見出し・区切り強調）</dd>
-                </div>
-              </dl>
+            <div class="plan-info-col">
+              <div class="plan-header">
+                <span class="plan-tag">いいとこ取り / 運用の手間を軽減</span>
+                <h3 class="plan-title">2言語同一ページ併記プラン</h3>
+                <p class="plan-desc">1つのカードに日英を併記。更新の手間を減らしつつインバウンド対応。</p>
+                <dl class="plan-meta">
+                  <div>
+                    <dt>向いている施設</dt>
+                    <dd>運用負荷を下げたい / 外国人ゲストも来る</dd>
+                  </div>
+                  <div>
+                    <dt>注意点</dt>
+                    <dd>情報量が増えるため、長文には不向き</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
-            <div class="spot-demo-area" data-demo-type="inline">
-              <!-- JSでカードを表示 -->
+            <div class="plan-demo-col">
+              <p class="demo-caption">2言語同一ページ併記プラン</p>
+              <div class="spot-demo-area" data-demo-type="inline">
+                <!-- JSでカードを表示 -->
+              </div>
             </div>
           </section>
+
         </div>
       </div>
     </section>

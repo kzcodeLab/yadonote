@@ -136,6 +136,7 @@
 }
 
 /* PCのみ表示、スマホのみ表示の制御（簡易） */
+/* PCのみ表示、スマホのみ表示の制御（簡易） */
 @media (min-width: 768px) {
   .mobile-only {
     display: none;
@@ -150,7 +151,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: start;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
     border-bottom: 1px solid #eee;
   }
 
@@ -158,18 +159,36 @@
     border-bottom: none;
   }
 
-  .plan-header {
-    border-bottom: none;
-    padding-bottom: 0;
+  .plan-info-col {
     position: sticky;
     top: 120px;
   }
 
-  /* デモエリア内のカードグリッド（強制的に縦並びにするか、グリッドにするか） */
+  .plan-header {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .plan-demo-col {
+    padding-top: 1rem;
+    max-width: 400px;
+    /* スマホ画面幅を意識した制限 */
+    justify-self: center;
+    /* カラム内で中央寄せ */
+    width: 100%;
+  }
+
+  .demo-caption {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+
+  /* デモエリア内のカードグリッド */
   .spot-demo-area .spot-category-grid {
     display: grid;
     grid-template-columns: 1fr;
-    /* 右カラム内では縦積み */
     gap: 2rem;
   }
 }
