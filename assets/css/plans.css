@@ -135,6 +135,15 @@
   border-color: #2f4f4f;
 }
 
+/* Card Icons Fix */
+.spot-card svg {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  fill: currentColor;
+  vertical-align: sub;
+}
+
 /* PCのみ表示、スマホのみ表示の制御（簡易） */
 /* PCのみ表示、スマホのみ表示の制御（簡易） */
 @media (min-width: 768px) {
