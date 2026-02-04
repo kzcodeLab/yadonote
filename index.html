@@ -644,6 +644,33 @@
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqButtons = document.querySelectorAll('.faq-question');
+      faqButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopImmediatePropagation(); // 他のスクリプトの干渉防止
+
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+
+          const targetId = btn.getAttribute('aria-controls');
+          const target = document.getElementById(targetId);
+          if (target) {
+            // クラス切り替えとインラインスタイル適用を併用して確実に表示させる
+            if (!expanded) {
+              target.classList.add('open');
+              target.style.display = 'block';
+            } else {
+              target.classList.remove('open');
+              target.style.display = 'none'; // CSSで消えるはずだが念のため
+            }
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
