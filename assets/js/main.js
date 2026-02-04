@@ -420,10 +420,12 @@ const ANALYTICS_EVENT = 'spot_click';
 const ANALYTICS_ENDPOINT = '';
 
 function setupFAQ() {
-  // イベント委譲を使って動的に対応＆確実性を向上
-  document.body.addEventListener('click', (e) => {
+  // イベント委譲：ドキュメント全体でクリックを監視 (v2)
+  document.addEventListener('click', (e) => {
     const button = e.target.closest('.faq-question');
     if (!button) return;
+
+    e.preventDefault();
 
     const expanded = button.getAttribute('aria-expanded') === 'true';
     button.setAttribute('aria-expanded', String(!expanded));
