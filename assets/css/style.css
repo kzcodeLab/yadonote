@@ -620,11 +620,28 @@ a:focus {
 }
 
 .pricing-price {
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin: 0;
   text-align: center;
-  color: rgba(31, 122, 122, 0.65);
+  color: #999;
   text-decoration: line-through;
+}
+
+.limited {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  color: #e53935;
+  margin: -0.5rem 0 0;
+}
+
+.pricing-price span,
+.limited span {
+  font-size: 0.8em;
+  font-weight: normal;
+  color: #999;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .pricing-card ul {
