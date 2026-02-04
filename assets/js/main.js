@@ -416,18 +416,25 @@ function createSpotLink(label, href, trackPrefix, spot) {
   return anchor;
 }
 
+const ANALYTICS_EVENT = 'spot_click';
+const ANALYTICS_ENDPOINT = '';
+
 function setupFAQ() {
-  const buttons = document.querySelectorAll('.faq-question');
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-      button.setAttribute('aria-expanded', String(!expanded));
-      const answerId = button.getAttribute('aria-controls');
+  // イベント委譲を使って動的に対応＆確実性を向上
+  document.body.addEventListener('click', (e) => {
+    const button = e.target.closest('.faq-question');
+    if (!button) return;
+
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!expanded));
+
+    const answerId = button.getAttribute('aria-controls');
+    if (answerId) {
       const answer = document.getElementById(answerId);
       if (answer) {
         answer.classList.toggle('open', !expanded);
       }
-    });
+    }
   });
 }
 
