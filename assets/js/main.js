@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLanguage(); // サイト全体の言語設定（もしあれば）
   setupChips();    // スマホ用チップ動作
   setupTracking();
-  renderFAQ();
+  setupFAQ();
   renderSpots();
   loadSpots();
 });
@@ -416,77 +416,18 @@ function createSpotLink(label, href, trackPrefix, spot) {
   return anchor;
 }
 
-const FAQ_ITEMS = [
-  {
-    question: '申し込みから公開までどれくらいかかりますか？',
-    answer: '初稿7営業日、修正2往復で公開14営業日が目安です。'
-  },
-  {
-    question: '推しのお店・スポットがない場合どうすればよいですか？',
-    answer: 'こちらで選定可能です。インターネット、SNS上に公開されている情報からピックアップさせていただきます。'
-  },
-  {
-    question: '周辺情報が更新された場合は？',
-    answer: 'メンテナンスパックをご用意しています。ご希望に応じて選択してください。\n　急ぎの場合は、緊急プランも用意しています。お気軽にご連絡ください。'
-  },
-  {
-    question: '表示速度やスマホ対応は大丈夫ですか？',
-    answer: 'はい。静的・軽量設計と画像最適化をしています。画像が多くなると表示速度が遅くなる場合がありますが、できる限り軽量化して見やすいサイト作りに努めます。'
-  },
-  {
-    question: 'どこで公開されますか？独自ドメインは？',
-    answer: '標準はGitHub Pages（無料）。独自ドメイン希望の際はお客様に独自ドメイン・サーバーを用意していただく必要があります。'
-  },
-  {
-    question: '掲載に不具合・誤りがあった場合は？',
-    answer: '事実誤認やリンクミスは無償で即時対応します。'
-  },
-  {
-    question: '「AIを使う」とは具体的に何をしますか？',
-    answer: '原稿案の生成・整形の補助に活用します。最終的な内容は人が確認・編集し、正確性とトーンを担保します。'
-  },
-  {
-    question: '納品されるものにはどんなものが含まれますか？',
-    answer: 'サイトURLを共有させていただいております。ご希望であれば別途QRコードを作成してお渡しも可能です。（別途お見積り）'
-  },
-  {
-    question: '支払いタイミングは？',
-    answer: '公開時に請求、銀行振込（手数料ご負担）です。キャンセルは着手後50％が目安です。'
-  }
-];
-
-function renderFAQ() {
-  const container = document.querySelector('.faq-list');
-  if (!container) return;
-  container.innerHTML = '';
-  FAQ_ITEMS.forEach((item, index) => {
-    const wrapper = document.createElement('article');
-    wrapper.className = 'faq-item';
-    wrapper.setAttribute('role', 'listitem');
-
-    const button = document.createElement('button');
-    button.className = 'faq-question';
-    button.setAttribute('aria-expanded', String(index === 0));
-    button.innerHTML = `<span>${item.question}</span><span aria-hidden="true">${ICONS.chevron}</span>`;
-
-    const answer = document.createElement('div');
-    answer.className = 'faq-answer';
-    answer.id = `faq-answer-${index}`;
-    answer.textContent = item.answer;
-    if (index === 0) {
-      answer.classList.add('open');
-    }
-
-    button.setAttribute('aria-controls', answer.id);
+function setupFAQ() {
+  const buttons = document.querySelectorAll('.faq-question');
+  buttons.forEach(button => {
     button.addEventListener('click', () => {
       const expanded = button.getAttribute('aria-expanded') === 'true';
       button.setAttribute('aria-expanded', String(!expanded));
-      answer.classList.toggle('open', !expanded);
+      const answerId = button.getAttribute('aria-controls');
+      const answer = document.getElementById(answerId);
+      if (answer) {
+        answer.classList.toggle('open', !expanded);
+      }
     });
-
-    wrapper.appendChild(button);
-    wrapper.appendChild(answer);
-    container.appendChild(wrapper);
   });
 }
 
